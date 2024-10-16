@@ -3,12 +3,17 @@
 /* Estilo global */
 body {
   margin: 0;
-  font-family: 'SF Pro', sans-serif; /* Cambia a la fuente San Francisco */
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centra verticalmente */
   align-items: center; /* Centra horizontalmente */
   min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  font-weight: 300;
+
+}
+
+h1, h2, h3, h4 {
+  font-weight: 300;
 }
 
 /* Contenedor principal */
@@ -20,6 +25,8 @@ body {
   padding: 20px;
   padding-bottom: 80px; /* Espacio para el footer */
   flex: 1; /* Permite que el contenedor ocupe el espacio disponible */
+  font-weight: 300;
+  z-index: 2;
 }
 
 /* Inputs y etiquetas */
@@ -27,11 +34,14 @@ label {
   display: flex; /* Usar flexbox para etiquetas */
   align-items: center; /* Centrar verticalmente el texto y el checkbox */
   margin-bottom: 10px; /* Espacio entre las etiquetas */
+  font-weight: 300;
 }
 
 /* Checkbox */
 input[type="checkbox"] {
   margin-right: 10px; /* Espacio entre el checkbox y el texto */
+  font-weight: 300;
+
 }
 
 /* Botón */
@@ -50,6 +60,8 @@ button {
   position: relative; /* Permite usar z-index */
   z-index: 10; /* Asegura que el botón esté por encima del footer */
   margin-bottom: 50px; /* Espacio para evitar superposición con el footer */
+  font-weight: 300;
+
 }
 
 button:hover {
@@ -58,6 +70,8 @@ button:hover {
 
 /* Footer */
 footer {
+  font-weight: 300;
+  z-index: 1;
   background-color: #3333333b; /* Color de fondo */
   color: black; /* Color del texto */
   text-align: center;

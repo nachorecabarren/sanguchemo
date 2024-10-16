@@ -15,7 +15,7 @@ export class AppComponent {
   sauces = ['Mayonnaise 🍶', 'Ketchup 🍅', 'Mustard 🌭', 'Salsa 🌶'];
   cheeses = ['Cheddar 🧀', 'Swiss 🧀', 'Gouda 🧀', 'Blue Cheese 🧀'];
   meats = ['Ham 🍖', 'Turkey 🦃', 'Chicken 🍗', 'Beef 🥩'];
-  extras = ['Extra Patty 🍔', 'Fries 🍟', 'Cheddar 🧀', 'Egg 🥚', 'Soda 🥤', 'Water 💧'];
+  extras = ['Extra Patty 🍔', 'Fries 🍟', 'Extra Cheese 🧀', 'Egg 🥚', 'Soda 🥤', 'Water 💧'];
 
   selectedBread = '';
   selectedVegetables: string[] = [];
