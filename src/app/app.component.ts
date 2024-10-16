@@ -10,12 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  breadTypes = ['White Bread 🥖', 'Whole Grain 🥪', 'Rye 🍞', 'Brioche 🍞'];
-  vegetables = ['Lettuce 🥬', 'Tomato 🍅', 'Pickles 🥒', 'Onion 🧅'];
-  sauces = ['Mayonnaise 🍶', 'Ketchup 🍅', 'Mustard 🌭', 'Salsa 🌶'];
-  cheeses = ['Cheddar 🧀', 'Swiss 🧀', 'Gouda 🧀', 'Blue Cheese 🧀'];
-  meats = ['Ham 🍖', 'Turkey 🦃', 'Chicken 🍗', 'Beef 🥩'];
-  extras = ['Extra Patty 🍔', 'Fries 🍟', 'Extra Cheese 🧀', 'Egg 🥚', 'Soda 🥤', 'Water 💧'];
+breadTypes = ['Pan Blanco 🥖', 'Integral 🥪', 'Centeno 🍞', 'Brioche 🍞'];
+vegetables = ['Lechuga 🥬', 'Tomate 🍅', 'Pickles 🥒', 'Cebolla 🧅'];
+sauces = ['Mayonesa 🍶', 'Ketchup 🍅', 'Mostaza 🌭', 'Salsa 🌶'];
+cheeses = ['Cheddar 🧀', 'Suizo 🧀', 'Gouda 🧀', 'Queso Azul 🧀'];
+meats = ['Jamón 🍖', 'Pavo 🦃', 'Pollo 🍗', 'Res 🥩'];
+extras = ['Medallón Extra 🍔', 'Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚', 'Gaseosa 🥤', 'Agua 💧'];
+
 
   selectedBread = '';
   selectedVegetables: string[] = [];
