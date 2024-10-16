@@ -1,0 +1,81 @@
+/* styles.css */
+
+/* Estilo global */
+body {
+  margin: 0;
+  font-family: 'SF Pro', sans-serif; /* Cambia a la fuente San Francisco */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente los elementos dentro del contenedor */
+  align-items: center; /* Centra horizontalmente los elementos dentro del contenedor */
+  padding: 20px;
+  padding-bottom: 80px; /* Espacio para el footer */
+  flex: 1; /* Permite que el contenedor ocupe el espacio disponible */
+}
+
+/* Inputs y etiquetas */
+label {
+  display: flex; /* Usar flexbox para etiquetas */
+  align-items: center; /* Centrar verticalmente el texto y el checkbox */
+  margin-bottom: 10px; /* Espacio entre las etiquetas */
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  margin-right: 10px; /* Espacio entre el checkbox y el texto */
+}
+
+/* Botón */
+button {
+  display: flex;
+  justify-content: center; /* Centra el texto del botón */
+  align-items: center; /* Asegura que el texto esté centrado verticalmente */
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s; /* Transición suave para hover */
+  position: relative; /* Permite usar z-index */
+  z-index: 10; /* Asegura que el botón esté por encima del footer */
+  margin-bottom: 50px; /* Espacio para evitar superposición con el footer */
+}
+
+button:hover {
+  background-color: #45a049; /* Color del botón al pasar el mouse */
+}
+
+/* Footer */
+footer {
+  background-color: #3333333b; /* Color de fondo */
+  color: black; /* Color del texto */
+  text-align: center;
+  padding: 10px 0;
+  position: fixed; /* Fijo en la parte inferior */
+  bottom: 0; /* Asegúrate de que esté en la parte inferior */
+  left: 0; /* Alineación completa */
+  right: 0; /* Alineación completa */
+  z-index: 1; /* Asegura que el footer esté por debajo del botón */
+  a, p {
+    display: inline-block;
+  }
+}
+
+/* Ícono de Instagram */
+.instagram-icon {
+  width: 30px; /* Ajusta el tamaño como desees */
+  height: auto;
+  margin-left: 5px; /* Espacio entre el texto y el icono */
+  vertical-align: middle; /* Alineación vertical */
+}
