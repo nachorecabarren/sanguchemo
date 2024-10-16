@@ -115,3 +115,12 @@ footer {
 .footer.show {
   bottom: 0; /* Mostrar el footer cuando tenga la clase 'show' */
 }
+input[type="text"],
+select {
+  width: 100%; /* o el tamaño que desees, como 250px */
+  max-width: 300px; /* Limita el ancho máximo si es necesario */
+  padding: 10px; /* Para un espaciado interno cómodo */
+  margin: 5px 0; /* Espaciado entre los elementos */
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+  font-weight: 300;
+}
