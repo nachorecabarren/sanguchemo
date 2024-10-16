@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -24,6 +24,16 @@ export class AppComponent {
   selectedMeat = '';
   selectedExtras: string[] = [];
   customerName: string = ''; // Inicializa el nombre como una cadena vacía
+  showFooter = false;
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const container = document.querySelector('.container');
+    if (container) {
+      const { scrollTop, clientHeight, scrollHeight } = container as HTMLElement;
+      this.showFooter = scrollTop + clientHeight >= scrollHeight;
+    }
+  }
 
   toggleVegetable(vegetable: string): void {
     const index = this.selectedVegetables.indexOf(vegetable);

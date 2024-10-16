@@ -26,7 +26,10 @@ h1, h2, h3, h4 {
   padding-bottom: 80px; /* Espacio para el footer */
   flex: 1; /* Permite que el contenedor ocupe el espacio disponible */
   font-weight: 300;
-  z-index: 2;
+}
+
+.form-group {
+  z-index: -1;
 }
 
 /* Inputs y etiquetas */
@@ -71,7 +74,6 @@ button:hover {
 /* Footer */
 footer {
   font-weight: 300;
-  z-index: 1;
   background-color: #3333333b; /* Color de fondo */
   color: black; /* Color del texto */
   text-align: center;
@@ -92,4 +94,24 @@ footer {
   height: auto;
   margin-left: 5px; /* Espacio entre el texto y el icono */
   vertical-align: middle; /* Alineación vertical */
+}
+
+
+.footer {
+  position: fixed;
+  bottom: -60px; /* Ocultar el footer inicialmente */
+  left: 0;
+  right: 0;
+  height: 60px; /* Altura del footer */
+  background-color: #fff; /* Fondo blanco o el color que prefieras */
+  transition: bottom 0.3s; /* Transición suave */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  z-index: 1;
+}
+
+.footer.show {
+  bottom: 0; /* Mostrar el footer cuando tenga la clase 'show' */
 }
