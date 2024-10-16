@@ -69,7 +69,7 @@ export class AppComponent {
   }
 
   sendOrderViaWhatsApp(): void {
-    const phoneNumber = '5493342507430'; // Número de WhatsApp del local
+    const phoneNumber = '5493442507430'; // Número de WhatsApp del local
     const message = this.getOrderMessage();
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappURL, '_blank');
