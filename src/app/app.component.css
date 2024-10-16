@@ -29,7 +29,7 @@ h1, h2, h3, h4 {
 }
 
 .form-group {
-  z-index: -1;
+  z-index: 1;
 }
 
 /* Inputs y etiquetas */
