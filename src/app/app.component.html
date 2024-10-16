@@ -2,6 +2,10 @@
   <h1>Crea tu Sandwich 🥪</h1>
   <h4>¡Crea tu sándwich ideal con los ingredientes que más te gusten y disfrútalo al máximo!</h4>
 
+  <label for="customerName">Nombre:</label>
+  <input type="text" id="customerName" [(ngModel)]="customerName" placeholder="Ingresa tu nombre" />
+
+
   <div class="form-group">
     <h3>Pan</h3>
     <select [(ngModel)]="selectedBread" class="form-control">

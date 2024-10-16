@@ -23,6 +23,7 @@ export class AppComponent {
   selectedCheese = '';
   selectedMeat = '';
   selectedExtras: string[] = [];
+  customerName: string = ''; // Inicializa el nombre como una cadena vacía
 
   toggleVegetable(vegetable: string): void {
     const index = this.selectedVegetables.indexOf(vegetable);
@@ -52,21 +53,28 @@ export class AppComponent {
   }
 
   getOrderMessage(): string {
-    let message = `¡Hola! Quiero pedir un sándwich con: \n`;
-    message += `🍞 Pan: ${this.selectedBread}\n`;
+    let message = `¡Hola! Soy ${this.customerName} y quiero pedir un sándwich con:\n\n`;
+    message += ` 🍞 Pan: ${this.selectedBread}\n\n`;
+
     if (this.selectedVegetables.length > 0) {
-      message += `🥬 Verduras: ${this.selectedVegetables.join(', ')}\n`;
+      message += ` 🥬 Verduras: ${this.selectedVegetables.join(', ')}\n\n`;
     }
+
     if (this.selectedSauces.length > 0) {
-      message += `🍶 Aderezos: ${this.selectedSauces.join(', ')}\n`;
+      message += ` 🍶 Aderezos: ${this.selectedSauces.join(', ')}\n\n`;
     }
-    message += `🧀 Queso: ${this.selectedCheese}\n`;
-    message += `🍖 Carne: ${this.selectedMeat}\n`;
+
+    message += ` 🧀 Queso: ${this.selectedCheese}\n\n`;
+    message += ` 🍖 Carne: ${this.selectedMeat}\n\n`;
+
     if (this.selectedExtras.length > 0) {
-      message += `🍔 Extras: ${this.selectedExtras.join(', ')}\n`;
+      message += ` 🍔 Extras: ${this.selectedExtras.join(', ')}\n\n`;
     }
+
+    // Codifica el mensaje completo para que se envíe correctamente a WhatsApp
     return encodeURIComponent(message);
   }
+
 
   sendOrderViaWhatsApp(): void {
     const phoneNumber = '5493442507430'; // Número de WhatsApp del local
