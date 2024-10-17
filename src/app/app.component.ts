@@ -107,7 +107,7 @@ export class AppComponent {
       if (this.selectedDrink.length > 0) orderSummary += `, Bebida: ${this.selectedDrink.join(', ')}`;
     }
 
-    orderSummary += this.isPickup ? ' *PARA RETIRAR*' : ` *ENVÍO A DOMICILIO* ${this.shippingAddress.toUpperCase()})`;
+    //orderSummary += this.isPickup ? ' *PARA RETIRAR*' : ` *ENVÍO A DOMICILIO* ${this.shippingAddress.toUpperCase()})`;
 
     this.orders.push(orderSummary);
     this.resetSelections();
@@ -143,7 +143,8 @@ export class AppComponent {
 
   // Enviar el pedido por WhatsApp
   sendOrderViaWhatsApp() {
-    const message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido:\n\n${this.orders.join('\n\n')}`);
+    let message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido:\n\n${this.orders.join('\n\n')}`);
+    message += this.isPickup ? ' *PARA RETIRAR*' : ` *ENVÍO A DOMICILIO* ${this.shippingAddress.toUpperCase()})`;
     const phoneNumber = '5493442507430'; // Cambia por el número de WhatsApp del local
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }
