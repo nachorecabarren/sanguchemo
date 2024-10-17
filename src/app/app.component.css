@@ -210,3 +210,9 @@ select {
   margin-left: 10px; /* Espacio entre el texto del pedido y el botón */
 }
 
+.description {
+  margin: 10px 0; /* Espaciado alrededor de la reseña */
+  font-size: 16px; /* Ajustar tamaño de fuente */
+  color: #555; /* Color del texto */
+  text-align: center; /* Centrar el texto */
+}
