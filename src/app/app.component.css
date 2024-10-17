@@ -44,7 +44,6 @@ label {
 input[type="checkbox"] {
   margin-right: 10px; /* Espacio entre el checkbox y el texto */
   font-weight: 300;
-
 }
 
 /* Botón */
@@ -64,7 +63,7 @@ button {
   z-index: 10; /* Asegura que el botón esté por encima del footer */
   margin-bottom: 50px; /* Espacio para evitar superposición con el footer */
   font-weight: 300;
-
+  margin-top: 50px;
 }
 
 button:hover {
@@ -102,7 +101,7 @@ footer {
   bottom: -60px; /* Ocultar el footer inicialmente */
   left: 0;
   right: 0;
-  height: 60px; /* Altura del footer */
+  height: 50px; /* Altura del footer */
   background-color: #fff; /* Fondo blanco o el color que prefieras */
   transition: bottom 0.3s; /* Transición suave */
   display: flex;
@@ -123,4 +122,9 @@ select {
   margin: 5px 0; /* Espaciado entre los elementos */
   box-sizing: border-box; /* Incluye padding y border en el ancho total */
   font-weight: 300;
+}
+
+.send-button-disabled {
+  pointer-events: none;
+  background-color: gainsboro;
 }

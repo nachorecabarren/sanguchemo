@@ -15,7 +15,9 @@ vegetables = ['Lechuga 🥬', 'Tomate 🍅', 'Pickles 🥒', 'Cebolla 🧅'];
 sauces = ['Mayonesa 🍶', 'Ketchup 🍅', 'Mostaza 🌭', 'Salsa 🌶'];
 cheeses = ['Cheddar 🧀', 'Suizo 🧀', 'Gouda 🧀', 'Queso Azul 🧀'];
 meats = ['Jamón 🍖', 'Pavo 🦃', 'Pollo 🍗', 'Res 🥩'];
-extras = ['Medallón Extra 🍔', 'Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚', 'Gaseosa 🥤', 'Agua 💧'];
+extras = ['Medallón Extra 🍔', 'Medallón Extra X2 🍔','Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚'];
+toDrink = ['Gaseosa 🥤', 'Agua Saborizada 🥤','Agua 💧', 'Cerveza 🍺'];
+
 
 
   selectedBread = '';
@@ -24,6 +26,7 @@ extras = ['Medallón Extra 🍔', 'Papas Fritas 🍟', 'Extra Queso 🧀', 'Huev
   selectedCheese = '';
   selectedMeat = '';
   selectedExtras: string[] = [];
+  selectedDrinks: string[] = [];
   customerName: string = ''; // Inicializa el nombre como una cadena vacía
   showFooter = false;
 
@@ -63,6 +66,15 @@ extras = ['Medallón Extra 🍔', 'Papas Fritas 🍟', 'Extra Queso 🧀', 'Huev
     }
   }
 
+  toggleDrink(drink: string): void {
+    const index = this.selectedDrinks.indexOf(drink);
+    if (index === -1) {
+      this.selectedDrinks.push(drink);
+    } else {
+      this.selectedDrinks.splice(index, 1);
+    }
+  }
+
   getOrderMessage(): string {
     let message = `¡Hola! Soy ${this.customerName} y quiero pedir un sándwich con:\n\n`;
     message += ` 🍞 Pan: ${this.selectedBread}\n\n`;
@@ -80,6 +92,10 @@ extras = ['Medallón Extra 🍔', 'Papas Fritas 🍟', 'Extra Queso 🧀', 'Huev
 
     if (this.selectedExtras.length > 0) {
       message += ` 🍔 Extras: ${this.selectedExtras.join(', ')}\n\n`;
+    }
+
+    if (this.selectedDrinks.length > 0) {
+      message += ` 🥤 Bebidas: ${this.selectedDrinks.join(', ')}\n\n`;
     }
 
     // Codifica el mensaje completo para que se envíe correctamente a WhatsApp
