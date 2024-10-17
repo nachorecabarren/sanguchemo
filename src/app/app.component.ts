@@ -1,34 +1,46 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
+import { HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
+  standalone: true, // Asegúrate de que sea standalone
+  imports: [FormsModule, CommonModule], // Añade FormsModule aquí
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-breadTypes = ['Pan Blanco 🥖', 'Integral 🥪', 'Centeno 🍞', 'Brioche 🍞'];
-vegetables = ['Lechuga 🥬', 'Tomate 🍅', 'Pickles 🥒', 'Cebolla 🧅'];
-sauces = ['Mayonesa 🍶', 'Ketchup 🍅', 'Mostaza 🌭', 'Salsa 🌶'];
-cheeses = ['Cheddar 🧀', 'Suizo 🧀', 'Gouda 🧀', 'Queso Azul 🧀'];
-meats = ['Jamón 🍖', 'Pavo 🦃', 'Pollo 🍗', 'Res 🥩'];
-extras = ['Medallón Extra 🍔', 'Medallón Extra X2 🍔','Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚'];
-toDrink = ['Gaseosa 🥤', 'Agua Saborizada 🥤','Agua 💧', 'Cerveza 🍺'];
+  customerName: string = '';  // Nombre del usuario
+  selectedOrderType: string = '';  // Sándwich o ensalada
+  orders: string[] = [];  // Lista de pedidos
 
+  // Ingredientes para Sandwich
+  breadTypes = ['Pan Blanco 🥖', 'Integral 🥪', 'Centeno 🍞', 'Brioche 🍞'];
+  vegetables = ['Tomate 🍅', 'Lechuga 🥬', 'Rúcula 🥗', 'Zanahoria 🥕', 'Pepino 🥒', 'Huevo 🥚', 'Aceitunas 🫒', 'Salsa Criolla 🌶', 'Cebolla 🧅', 'Cebolla Morada 🧅'];
+  sauces = ['Mayonesa 🍶', 'Ketchup 🍅', 'Mostaza 🌭', 'Salsa 🌶'];
+  cheeses = ['Cheddar 🧀', 'Suizo 🧀', 'Gouda 🧀', 'Queso Azul 🧀'];
+  meats = ['Jamón 🍖', 'Pavo 🦃', 'Pollo 🍗', 'Res 🥩'];
+  extras = ['Medallón Extra 🍔', 'Medallón Extra X2 🍔','Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚'];
+  toDrink = ['Gaseosa 🥤', 'Agua Saborizada 🥤','Agua 💧', 'Cerveza 🍺'];
 
+  // Ingredientes para Ensaladas
+  saladBases = ['Lechuga Romana 🥬', 'Espinaca 🥗', 'Kale 🥬'];
+  saladIngredients = ['Tomate 🍅', 'Lechuga 🥬', 'Rúcula 🥗', 'Zanahoria 🥕', 'Pepino 🥒', 'Huevo 🥚', 'Aceitunas 🫒', 'Salsa Criolla 🌶', 'Cebolla 🧅', 'Cebolla Morada 🧅'];
+  dressings = ['Aderezo César 🥣', 'Aceite de Oliva 🫒', 'Vinagreta 🍶'];
 
   selectedBread = '';
-  selectedVegetables: string[] = [];
-  selectedSauces: string[] = [];
-  selectedCheese = '';
   selectedMeat = '';
+  selectedCheese = '';
+  selectedBase = '';
+  selectedVegetables: string[] = [];
+  selectedSaladIngredients: string[] = [];
+  selectedSauces: string[] = [];
   selectedExtras: string[] = [];
-  selectedDrinks: string[] = [];
-  customerName: string = ''; // Inicializa el nombre como una cadena vacía
-  showFooter = false;
+  selectedDressings: string[] = [];
+  selectedDrink: string[] = [];
+
+    showFooter = false;
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
@@ -39,74 +51,90 @@ toDrink = ['Gaseosa 🥤', 'Agua Saborizada 🥤','Agua 💧', 'Cerveza 🍺'];
     }
   }
 
-  toggleVegetable(vegetable: string): void {
-    const index = this.selectedVegetables.indexOf(vegetable);
+  toggleVegetable(veg: string) {
+    this.toggleItem(veg, this.selectedVegetables);
+  }
+
+  toggleSaladIngredient(ingredient: string) {
+    this.toggleItem(ingredient, this.selectedSaladIngredients);
+  }
+
+  toggleSauce(sauce: string) {
+    this.toggleItem(sauce, this.selectedSauces);
+  }
+
+  toggleExtra(extra: string) {
+    this.toggleItem(extra, this.selectedExtras);
+  }
+
+  toggleDressing(dressing: string) {
+    this.toggleItem(dressing, this.selectedDressings);
+  }
+
+  toggleDrink(drink: string) {
+    this.toggleItem(drink, this.selectedDrink)
+  }
+
+  toggleItem(item: string, list: string[]) {
+    const index = list.indexOf(item);
     if (index === -1) {
-      this.selectedVegetables.push(vegetable);
+      list.push(item);
     } else {
-      this.selectedVegetables.splice(index, 1);
+      list.splice(index, 1);
     }
   }
 
-  toggleSauce(sauce: string): void {
-    const index = this.selectedSauces.indexOf(sauce);
-    if (index === -1) {
-      this.selectedSauces.push(sauce);
-    } else {
-      this.selectedSauces.splice(index, 1);
+  // Agregar el pedido a la lista
+  addToOrder(orderType: string) {
+    let orderSummary = '';
+
+    if (orderType === 'sandwich') {
+      orderSummary = `Sándwich de ${this.selectedBread}`;
+      if (this.selectedMeat) orderSummary += ` con ${this.selectedMeat}`;
+      if (this.selectedCheese) orderSummary += `, Queso ${this.selectedCheese}`;
+      if (this.selectedVegetables.length > 0) orderSummary += `, Verduras: ${this.selectedVegetables.join(', ')}`;
+      if (this.selectedSauces.length > 0) orderSummary += `, Aderezos: ${this.selectedSauces.join(', ')}`;
+      if (this.selectedExtras.length > 0) orderSummary += `, Extras: ${this.selectedExtras.join(', ')}`;
+      if (this.selectedDrink.length > 0) orderSummary += `, Bebida: ${this.selectedDrink.join(', ')}`;
+
+    } else if (orderType === 'ensalada') {
+      orderSummary = `Ensalada de ${this.selectedBase}`;
+      if (this.selectedSaladIngredients.length > 0) orderSummary += ` con ingredientes: ${this.selectedSaladIngredients.join(', ')}`;
+      if (this.selectedDressings.length > 0) orderSummary += `, Aderezos: ${this.selectedDressings.join(', ')}`;
+      if (this.selectedDrink.length > 0) orderSummary += `, Bebida: ${this.selectedDrink.join(', ')}`;
+    }
+
+    this.orders.push(orderSummary);
+    this.resetSelections();
+  }
+
+  // Eliminar un pedido
+  removeOrder(order: string) {
+    const index = this.orders.indexOf(order);
+    if (index > -1) {
+      this.orders.splice(index, 1);
     }
   }
 
-  toggleExtra(extra: string): void {
-    const index = this.selectedExtras.indexOf(extra);
-    if (index === -1) {
-      this.selectedExtras.push(extra);
-    } else {
-      this.selectedExtras.splice(index, 1);
-    }
+  // Resetear las selecciones después de agregar al pedido
+  resetSelections() {
+    this.selectedBread = '';
+    this.selectedMeat = '';
+    this.selectedCheese = '';
+    this.selectedBase = '';
+    this.selectedVegetables = [];
+    this.selectedSaladIngredients = [];
+    this.selectedSauces = [];
+    this.selectedExtras = [];
+    this.selectedDressings = [];
+    this.selectedDrink = [];
+    this.selectedOrderType = ''; // Resetear tipo de pedido
   }
 
-  toggleDrink(drink: string): void {
-    const index = this.selectedDrinks.indexOf(drink);
-    if (index === -1) {
-      this.selectedDrinks.push(drink);
-    } else {
-      this.selectedDrinks.splice(index, 1);
-    }
-  }
-
-  getOrderMessage(): string {
-    let message = `¡Hola! Soy ${this.customerName} y quiero pedir un sándwich con:\n\n`;
-    message += ` • Pan: ${this.selectedBread}\n\n`;
-
-    if (this.selectedVegetables.length > 0) {
-      message += ` • Verduras: ${this.selectedVegetables.join(', ')}\n\n`;
-    }
-
-    if (this.selectedSauces.length > 0) {
-      message += ` • Aderezos: ${this.selectedSauces.join(', ')}\n\n`;
-    }
-
-    message += ` • Queso: ${this.selectedCheese}\n\n`;
-    message += ` • Carne: ${this.selectedMeat}\n\n`;
-
-    if (this.selectedExtras.length > 0) {
-      message += ` • Extras: ${this.selectedExtras.join(', ')}\n\n`;
-    }
-
-    if (this.selectedDrinks.length > 0) {
-      message += ` • Bebidas: ${this.selectedDrinks.join(', ')}\n\n`;
-    }
-
-    // Codifica el mensaje completo para que se envíe correctamente a WhatsApp
-    return encodeURIComponent(message);
-  }
-
-
-  sendOrderViaWhatsApp(): void {
-    const phoneNumber = '5493442507430'; // Número de WhatsApp del local
-    const message = this.getOrderMessage();
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(whatsappURL, '_blank');
+  // Enviar el pedido por WhatsApp
+  sendOrderViaWhatsApp() {
+    const message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido:\n\n${this.orders.join('\n\n')}`);
+    const phoneNumber = '5493442507430'; // Cambia por el número de WhatsApp del local
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }
 }

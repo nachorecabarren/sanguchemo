@@ -1,76 +1,143 @@
 <div class="container">
-  <h1>Arma tu Sandwich 🥪</h1>
-  <h4>¡Crea tu sándwich ideal con los ingredientes que más te gusten y disfrútalo al máximo!</h4>
+  <h1>Arma tu pedido</h1>
 
   <div class="form-group">
-
-  <h4 for="customerName">Nombre:</h4>
-  <input type="text" id="customerName" [(ngModel)]="customerName" />
-
+    <h4 for="customerName">Nombre:</h4>
+    <input type="text" id="customerName" [(ngModel)]="customerName" placeholder="Ingresa tu nombre" />
+  </div>
 
   <div class="form-group">
-    <h4>Pan:</h4>
-    <select [(ngModel)]="selectedBread" class="form-control">
-      <option value="" selected></option>
-      <option *ngFor="let bread of breadTypes" [value]="bread">{{ bread }}</option>
+    <h4>Elige tu pedido:</h4>
+    <select [(ngModel)]="selectedOrderType" class="form-control">
+      <option value="" selected disabled>Selecciona una opción</option>
+      <option value="sandwich">Sándwich 🥪</option>
+      <option value="ensalada">Ensalada 🥗</option>
     </select>
   </div>
 
-  <div class="form-group">
-    <h4>Carne:</h4>
-    <select [(ngModel)]="selectedMeat" class="form-control">
-      <option value="" selected></option>
-      <option *ngFor="let meat of meats" [value]="meat">{{ meat }}</option>
-    </select>
+  <!-- Formulario para armar un Sándwich -->
+  <div *ngIf="selectedOrderType === 'sandwich'">
+    <h4>Arma tu Sándwich 🥪</h4>
+    <div class="form-group">
+      <h4>Pan:</h4>
+      <select [(ngModel)]="selectedBread" class="form-control">
+        <option value="" selected></option>
+        <option *ngFor="let bread of breadTypes" [value]="bread">{{ bread }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h4>Carne:</h4>
+      <select [(ngModel)]="selectedMeat" class="form-control">
+        <option value="" selected></option>
+        <option *ngFor="let meat of meats" [value]="meat">{{ meat }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h4>Verduras:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let veg of vegetables" class="checkbox-label">
+          <input type="checkbox" (change)="toggleVegetable(veg)"> {{ veg }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h4>Aderezos:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let sauce of sauces" class="checkbox-label">
+          <input type="checkbox" (change)="toggleSauce(sauce)"> {{ sauce }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h4>Queso:</h4>
+      <select [(ngModel)]="selectedCheese" class="form-control">
+        <option value="" selected></option>
+        <option *ngFor="let cheese of cheeses" [value]="cheese">{{ cheese }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h4>Extras:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let extra of extras" class="checkbox-label">
+          <input type="checkbox" (change)="toggleExtra(extra)"> {{ extra }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group" >
+      <h4>Bebida:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let drink of toDrink" class="checkbox-label">
+          <input type="checkbox" (change)="toggleDrink(drink)"> {{ drink }}
+        </label>
+      </div>
+    </div>
+    <button (click)="addToOrder('sandwich')" class="add-button">Agregar Sándwich</button>
   </div>
 
-  <div class="form-group">
-    <h4>Verduras:</h4>
-    <div class="checkbox-group">
-      <label *ngFor="let veg of vegetables" class="checkbox-label">
-        <input type="checkbox" (change)="toggleVegetable(veg)"> {{ veg }}
-      </label>
+  <!-- Formulario para armar una Ensalada -->
+  <div *ngIf="selectedOrderType === 'ensalada'">
+    <h4>Arma tu Ensalada 🥗</h4>
+
+    <div class="form-group">
+      <h4>Base de la ensalada:</h4>
+      <select [(ngModel)]="selectedBase" class="form-control">
+        <option value="" selected></option>
+        <option *ngFor="let base of saladBases" [value]="base">{{ base }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h4>Ingredientes:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let ingredient of saladIngredients" class="checkbox-label">
+          <input type="checkbox" (change)="toggleSaladIngredient(ingredient)"> {{ ingredient }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h4>Aderezos:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let dressing of dressings" class="checkbox-label">
+          <input type="checkbox" (change)="toggleDressing(dressing)"> {{ dressing }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group" >
+      <h4>Bebida:</h4>
+      <div class="checkbox-group">
+        <label *ngFor="let drink of toDrink" class="checkbox-label">
+          <input type="checkbox" (change)="toggleDrink(drink)"> {{ drink }}
+        </label>
+      </div>
+    </div>
+
+    <button (click)="addToOrder('ensalada')" class="add-button">Agregar Ensalada</button>
+  </div>
+
+  <!-- Mostrar el pedido actual -->
+  <div *ngIf="orders.length > 0" class="order-summary">
+    <h4>Tu Pedido:</h4>
+    <ul class="order-list">
+      <li *ngFor="let order of orders">
+        {{ order }}
+        <button (click)="removeOrder(order)" class="remove-button">x</button>
+      </li>
+    </ul>
+    <div class="send-button-container">
+      <button (click)="sendOrderViaWhatsApp()" class="send-button">Enviar pedido por WhatsApp 📲</button>
     </div>
   </div>
-
-  <div class="form-group">
-    <h4>Aderezos:</h4>
-    <div class="checkbox-group">
-      <label *ngFor="let sauce of sauces" class="checkbox-label">
-        <input type="checkbox" (change)="toggleSauce(sauce)"> {{ sauce }}
-      </label>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <h4>Queso:</h4>
-    <select [(ngModel)]="selectedCheese" class="form-control">
-      <option value="" selected></option>
-      <option *ngFor="let cheese of cheeses" [value]="cheese">{{ cheese }}</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <h4>Extras:</h4>
-    <div class="checkbox-group">
-      <label *ngFor="let extra of extras" class="checkbox-label">
-        <input type="checkbox" (change)="toggleExtra(extra)"> {{ extra }}
-      </label>
-    </div>
-  </div>
-
-  <div class="form-group" >
-    <h4>Bebida:</h4>
-    <div class="checkbox-group">
-      <label *ngFor="let drink of toDrink" class="checkbox-label">
-        <input type="checkbox" (change)="toggleDrink(drink)"> {{ drink }}
-      </label>
-    </div>
-  </div>
-  <button (click)="sendOrderViaWhatsApp()" class="send-button" [ngClass]="{'send-button-disabled': customerName === '' || selectedBread.length === 0 || selectedMeat.length === 0}" [disabled]="customerName === ''">Enviar pedido por WhatsApp 📲</button>
 </div>
 
-<!-- Footer -->
+
 <footer class="footer" [ngClass]="{'show': showFooter}">
   <p>Ignacio Recabarren © 2024</p>
   <a href="https://www.instagram.com/nacho.recabarren" target="_blank" style="margin-right: 10px;">
