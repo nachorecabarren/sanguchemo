@@ -14,6 +14,9 @@ export class AppComponent {
   customerName: string = '';  // Nombre del usuario
   selectedOrderType: string = '';  // Sándwich o ensalada
   orders: string[] = [];  // Lista de pedidos
+  isPickup: boolean = true; // Estado de si el pedido es para retirar
+  shippingAddress: string = ''; // Dirección de envío
+
 
   // Ingredientes para Sandwich
   breadTypes = ['Pan Blanco 🥖', 'Integral 🥪', 'Centeno 🍞', 'Brioche 🍞'];
@@ -129,6 +132,11 @@ export class AppComponent {
     this.selectedDressings = [];
     this.selectedDrink = [];
     this.selectedOrderType = ''; // Resetear tipo de pedido
+    this.shippingAddress = ''; // Limpiar dirección de envío
+  }
+
+  updateOrderType(value: boolean) {
+    this.isPickup = value;
   }
 
   // Enviar el pedido por WhatsApp
@@ -136,6 +144,5 @@ export class AppComponent {
     const message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido:\n\n${this.orders.join('\n\n')}`);
     const phoneNumber = '5493442507430'; // Cambia por el número de WhatsApp del local
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-    this.orders = [];
   }
 }

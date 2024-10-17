@@ -7,10 +7,39 @@
     <input type="text" id="customerName" [(ngModel)]="customerName"/>
   </div>
 
+  <!-- <div class="form-group" style="display: inline-block;">
+    <h4>¿El pedido es para retirar o enviar?</h4>
+    <label>
+      <input type="checkbox" (change)="updateOrderType(true)"/> Retirar
+    </label>
+    <label>
+      <input type="checkbox" (change)="updateOrderType(false)"/> Envío
+    </label>
+  </div>
+  <div *ngIf="!isPickup" class="form-group">
+    <h4>Dirección de envío:</h4>
+    <input type="text" [(ngModel)]="shippingAddress"/>
+  </div> -->
+
+  <div class="form-group" style="display: inline-block;">
+    <h4>¿El pedido es para retirar o enviar?</h4>
+    <label>
+      <input type="radio" name="orderType" (change)="updateOrderType(true)" /> Retirar
+    </label>
+    <label>
+      <input type="radio" name="orderType" (change)="updateOrderType(false)" /> Envío
+    </label>
+  </div>
+  <div *ngIf="!isPickup" class="form-group">
+    <h4>Dirección de envío:</h4>
+    <input type="text" [(ngModel)]="shippingAddress" />
+  </div>
+
+
   <div class="form-group">
     <h4>Elige tu pedido:</h4>
     <select [(ngModel)]="selectedOrderType" class="form-control">
-      <option value="" selected disabled>Selecciona una opción</option>
+      <option value="" selected disabled> </option>
       <option value="sandwich">Sándwich 🥪</option>
       <option value="ensalada">Ensalada 🥗</option>
     </select>
