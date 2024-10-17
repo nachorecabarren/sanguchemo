@@ -136,5 +136,6 @@ export class AppComponent {
     const message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido:\n\n${this.orders.join('\n\n')}`);
     const phoneNumber = '5493442507430'; // Cambia por el número de WhatsApp del local
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    this.orders = [];
   }
 }
