@@ -77,25 +77,25 @@ toDrink = ['Gaseosa 🥤', 'Agua Saborizada 🥤','Agua 💧', 'Cerveza 🍺'];
 
   getOrderMessage(): string {
     let message = `¡Hola! Soy ${this.customerName} y quiero pedir un sándwich con:\n\n`;
-    message += ` 🍞 Pan: ${this.selectedBread}\n\n`;
+    message += ` • Pan: ${this.selectedBread}\n\n`;
 
     if (this.selectedVegetables.length > 0) {
-      message += ` 🥬 Verduras: ${this.selectedVegetables.join(', ')}\n\n`;
+      message += ` • Verduras: ${this.selectedVegetables.join(', ')}\n\n`;
     }
 
     if (this.selectedSauces.length > 0) {
-      message += ` 🍶 Aderezos: ${this.selectedSauces.join(', ')}\n\n`;
+      message += ` • Aderezos: ${this.selectedSauces.join(', ')}\n\n`;
     }
 
-    message += ` 🧀 Queso: ${this.selectedCheese}\n\n`;
-    message += ` 🍖 Carne: ${this.selectedMeat}\n\n`;
+    message += ` • Queso: ${this.selectedCheese}\n\n`;
+    message += ` • Carne: ${this.selectedMeat}\n\n`;
 
     if (this.selectedExtras.length > 0) {
-      message += ` 🍔 Extras: ${this.selectedExtras.join(', ')}\n\n`;
+      message += ` • Extras: ${this.selectedExtras.join(', ')}\n\n`;
     }
 
     if (this.selectedDrinks.length > 0) {
-      message += ` 🥤 Bebidas: ${this.selectedDrinks.join(', ')}\n\n`;
+      message += ` • Bebidas: ${this.selectedDrinks.join(', ')}\n\n`;
     }
 
     // Codifica el mensaje completo para que se envíe correctamente a WhatsApp
