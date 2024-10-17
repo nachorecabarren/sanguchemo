@@ -40,7 +40,7 @@ export class AppComponent {
   selectedDressings: string[] = [];
   selectedDrink: string[] = [];
 
-    showFooter = false;
+    showFooter = true;
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
