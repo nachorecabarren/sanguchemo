@@ -116,7 +116,7 @@ footer {
 }
 input[type="text"],
 select {
-  width: 375px; /* o el tamaño que desees, como 250px */
+  width: 100%; /* o el tamaño que desees, como 250px */
   max-width: 300px; /* Limita el ancho máximo si es necesario */
   padding: 10px; /* Para un espaciado interno cómodo */
   margin: 5px 0; /* Espaciado entre los elementos */
@@ -166,7 +166,7 @@ select {
 
 input[type="text"],
 select {
-  width: 375px; /* Ajusta el ancho a 100% del contenedor padre */
+  width: 100%; /* Ajusta el ancho a 100% del contenedor padre */
   max-width: 400px; /* Establece un ancho máximo, ajusta según sea necesario */
   padding: 10px; /* Espaciado interno para mejor apariencia */
   margin: 5px 0; /* Espaciado vertical entre los elementos */
