@@ -107,6 +107,8 @@ export class AppComponent {
       if (this.selectedDrink.length > 0) orderSummary += `, Bebida: ${this.selectedDrink.join(', ')}`;
     }
 
+    orderSummary += this.isPickup ? ' *PARA RETIRAR*' : ` *ENVÍO A DOMICILIO* ${this.shippingAddress.toUpperCase()})`;
+
     this.orders.push(orderSummary);
     this.resetSelections();
   }
