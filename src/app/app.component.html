@@ -38,7 +38,7 @@
 
   <div class="form-group">
     <h4>Elige tu pedido:</h4>
-    <select [(ngModel)]="selectedOrderType" class="form-control">
+    <select [(ngModel)]="selectedOrderType" class="form-control" [disabled]="customerName === ''">
       <option value="" selected disabled> </option>
       <option value="sandwich">Sándwich 🥪</option>
       <option value="ensalada">Ensalada 🥗</option>
@@ -107,7 +107,7 @@
         </label>
       </div>
     </div>
-    <button (click)="addToOrder('sandwich')" class="add-button" [disabled]="selectedBread.length === 0 || selectedMeat.length === 0 || (!isPickup && shippingAddress === '')">Agregar al pedido</button>
+    <button (click)="addToOrder('sandwich')" class="add-button" [disabled]="selectedBread.length === 0 || selectedMeat.length === 0">Agregar al pedido</button>
   </div>
 
   <!-- Formulario para armar una Ensalada -->
@@ -149,7 +149,7 @@
       </div>
     </div>
 
-    <button (click)="addToOrder('ensalada')" class="add-button" [disabled]="saladIngredients.length === 0 || (!isPickup && shippingAddress === '')">Agregar al pedido</button>
+    <button (click)="addToOrder('ensalada')" class="add-button" [disabled]="saladIngredients.length === 0">Agregar al pedido</button>
   </div>
 
   <!-- Mostrar el pedido actual -->
