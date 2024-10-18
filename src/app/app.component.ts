@@ -23,8 +23,8 @@ export class AppComponent {
   vegetables = ['Tomate 🍅', 'Lechuga 🥬', 'Rúcula 🥗', 'Zanahoria 🥕', 'Pepino 🥒', 'Huevo 🥚', 'Aceitunas 🫒', 'Salsa Criolla 🌶', 'Cebolla 🧅', 'Cebolla Morada 🧅'];
   sauces = ['Mayonesa 🍶', 'Ketchup 🍅', 'Mostaza 🌭', 'Salsa 🌶'];
   cheeses = ['Cheddar 🧀', 'Suizo 🧀', 'Gouda 🧀', 'Queso Azul 🧀'];
-  meats = ['Jamón 🍖', 'Pavo 🦃', 'Pollo 🍗', 'Res 🥩'];
-  extras = ['Medallón Extra 🍔', 'Medallón Extra X2 🍔','Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚'];
+  meats = ['Pavo 🦃', 'Pollo 🍗', 'Res 🥩'];
+  extras = ['Medallón Extra 🍔', 'Medallón Extra X2 🍔','Papas Fritas 🍟', 'Extra Queso 🧀', 'Huevo 🥚', 'Jamón 🍖'];
   toDrink = ['Gaseosa 🥤', 'Agua Saborizada 🥤','Agua 💧', 'Cerveza 🍺'];
 
   // Ingredientes para Ensaladas
