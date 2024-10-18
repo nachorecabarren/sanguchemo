@@ -133,7 +133,7 @@ export class AppComponent {
     this.selectedDressings = [];
     this.selectedDrink = [];
     this.selectedOrderType = ''; // Resetear tipo de pedido
-    this.shippingAddress = ''; // Limpiar dirección de envío
+    //this.shippingAddress = ''; // Limpiar dirección de envío
   }
 
   updateOrderType(value: boolean) {
