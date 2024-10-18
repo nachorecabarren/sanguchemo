@@ -4,7 +4,7 @@
 
   <div class="form-group">
     <h4 for="customerName">Nombre:</h4>
-    <input type="text" id="customerName" [(ngModel)]="customerName"/>
+    <input type="text" id="customerName" [disabled]="this.orders.length > 0" [(ngModel)]="customerName"/>
   </div>
 
   <!-- <div class="form-group" style="display: inline-block;">
@@ -24,10 +24,10 @@
   <div class="form-group" style="display: inline-block;">
     <h4>¿El pedido es para retirar o enviar?</h4>
     <label>
-      <input type="radio" name="orderType" (change)="updateOrderType(true)" /> Retirar
+      <input type="radio" name="orderType" (change)="updateOrderType(true)" [disabled]="this.orders.length > 0"/> Retirar
     </label>
     <label>
-      <input type="radio" name="orderType" (change)="updateOrderType(false)" /> Envío
+      <input type="radio" name="orderType" (change)="updateOrderType(false)" [disabled]="this.orders.length > 0"/> Envío
     </label>
   </div>
   <div *ngIf="!isPickup" class="form-group">
