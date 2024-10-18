@@ -16,7 +16,7 @@ export class AppComponent {
   orders: string[] = [];  // Lista de pedidos
   isPickup: boolean = true; // Estado de si el pedido es para retirar
   shippingAddress: string = ''; // Dirección de envío
-
+  isModalOpen: boolean = false;
 
   // Ingredientes para Sandwich
   breadTypes = ['Pan Blanco 🥖', 'Integral 🥪', 'Centeno 🍞', 'Brioche 🍞'];
@@ -142,9 +142,22 @@ export class AppComponent {
 
   // Enviar el pedido por WhatsApp
   sendOrderViaWhatsApp() {
-    const dirección = this.isPickup ? ' *PARA RETIRAR*' : ` *ENVÍO A DOMICILIO ${this.shippingAddress.toUpperCase()}*`;
-    const message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido ${dirección}: \n\n${this.orders.join('\n\n')}`);
-    const phoneNumber = '5493442507430'; // Cambia por el número de WhatsApp del local
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    if (!this.isPickup && !this.shippingAddress) {
+      this.openModal();
+    } else {
+      const dirección = this.isPickup ? ' *PARA RETIRAR*' : ` *ENVÍO A DOMICILIO ${this.shippingAddress.toUpperCase()}*`;
+      const message = encodeURIComponent(`¡Hola! Soy ${this.customerName} y quiero hacer el siguiente pedido ${dirección}: \n\n${this.orders.join('\n\n')}`);
+      const phoneNumber = '5493442507430'; // Cambia por el número de WhatsApp del local
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  // Cierra el modal
+  closeModal() {
+    this.isModalOpen = false;
   }
 }
